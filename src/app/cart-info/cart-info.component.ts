@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { CounterService } from '../service/counter.service';
 
@@ -7,18 +7,21 @@ import { CounterService } from '../service/counter.service';
   templateUrl: './cart-info.component.html',
   styleUrls: ['./cart-info.component.css'],
 })
-export class CartInfoComponent implements OnInit {
+export class CartInfoComponent implements OnInit  , DoCheck {
   productDetails: any = [];
   totalPrice: number = 0;
 
   constructor(private cartService: CounterService, private router: Router) {}
 
+  // to call the getTotalprice every time any change happens
+  ngDoCheck(): void {
+    this.totalPrice = 0;
+    this.getTotalPrice()
+  }
+
   // remove selected item from the cart
   removeItem(product: any) {
     this.cartService.removeFromCart(product);
-    // make total price with 0 and call total price again
-    this.totalPrice = 0;
-    this.getTotalPrice();
   }
 
   // remove the cart
@@ -36,15 +39,11 @@ export class CartInfoComponent implements OnInit {
     this.cartService.getProducts().subscribe((res) => {
       this.productDetails = res;
     });
-    // call total price at first
-    this.getTotalPrice();
   }
 
   // increase the quantity of item
   increaseCounter(index: number) {
     this.productDetails[index].quantity++;
-    // this.totalPrice = 0;
-    this.getTotalPrice();
   }
 
   // decrease the quantity of item and check if the quantity is already one
@@ -53,8 +52,6 @@ export class CartInfoComponent implements OnInit {
       this.productDetails[index].quantity = 1;
     } else {
       this.productDetails[index].quantity--;
-      this.totalPrice = 0;
-      this.getTotalPrice();
     }
   }
 
