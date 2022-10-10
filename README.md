@@ -1,5 +1,11 @@
 # Card
 
+E-Commerce Project using angular and bootstrap5.
+- angular route (home page , login page , register page , product details page , cart page )
+- using angular reactive form & templete driven (validtion)
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.5.
 
 ## Development server
