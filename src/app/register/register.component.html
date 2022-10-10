@@ -1,0 +1,279 @@
+<section
+  class="d-flex rounded-3 shadow flex-column p-3 ms-auto me-auto justify-content-center m-5"
+>
+  <!-- ============== start form fields =============  -->
+  <form
+    [formGroup]="registerForm"
+    (ngSubmit)="handleSubmitForm()"
+    class="p-3 mb-2 rounded-3"
+  >
+    <div class="form-group w-100 mb-3">
+      <label class="text-light" for="exampleInputName1">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputName1"
+        aria-describedby="nameHelp"
+        placeholder="Mohamed"
+        formControlName="fName"
+      />
+
+      <div
+        *ngIf="
+          registerControls['fName'].touched && !registerControls['fName'].valid
+        "
+      >
+        <p
+          *ngIf="
+            registerControls['fName'].errors &&
+            registerControls['fName'].errors['required']
+          "
+          class="form-text text-danger"
+        >
+          This field is required
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group w-100 mb-3">
+      <label class="text-light" for="exampleInputEmail1">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="mohamed@gmail.com"
+        formControlName="email"
+      />
+
+      <div
+        *ngIf="
+          registerControls['email'].touched && !registerControls['email'].valid
+        "
+      >
+        <p
+          *ngIf="
+            registerControls['email'].errors &&
+            registerControls['email'].errors['required']
+          "
+          class="form-text text-danger"
+        >
+          This field is required
+        </p>
+        <p
+          *ngIf="
+            registerControls['email'].errors &&
+            registerControls['email'].errors['email']
+          "
+          class="form-text text-danger"
+        >
+          please enter a valid Email
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group w-100 mb-3">
+      <label class="text-light" for="exampleInputUserName1">User Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleInputUserName1"
+        aria-describedby="nameHelp"
+        placeholder="Enter UserName"
+        formControlName="userName"
+      />
+
+      <div
+        *ngIf="
+          registerControls['userName'].touched &&
+          !registerControls['userName'].valid
+        "
+      >
+        <p
+          *ngIf="
+            registerControls['userName'].errors &&
+            registerControls['userName'].errors['required']
+          "
+          class="form-text text-danger"
+        >
+          This field is required
+        </p>
+        <p
+          *ngIf="
+            registerControls['userName'].errors &&
+            registerControls['userName'].errors['pattern']
+          "
+          class="form-text text-danger"
+        >
+          userName must contain no spaces
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group mb-3 w-100">
+      <label class="text-light" for="exampleInputPassword1">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="P@ssword1234"
+        formControlName="password"
+      />
+
+      <div
+        *ngIf="
+          registerControls['password'].touched &&
+          !registerControls['password'].valid
+        "
+      >
+        <p
+          *ngIf="
+            registerControls['password'].errors &&
+            registerControls['password'].errors['required']
+          "
+          class="form-text text-danger"
+        >
+          This field is required
+        </p>
+        <p
+          *ngIf="
+            registerControls['password'].errors &&
+            registerControls['password'].errors['pattern']
+          "
+          class="form-text text-danger"
+        >
+          password should have minimum 8 characters , at least one uppercase
+          letter, one lowercase letter , one digit , one special character
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group mb-5 w-100">
+      <label class="text-light" for="exampleInputPassword2"
+        >Confirm Password</label
+      >
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword2"
+        placeholder="Re-Enter Password"
+        formControlName="confirmPass"
+      />
+
+      <div
+        *ngIf="
+          registerControls['confirmPass'].touched &&
+          !registerControls['confirmPass'].valid
+        "
+      >
+        <p
+          class="form-text text-danger"
+          *ngIf="registerControls['confirmPass'].getError('required')"
+        >
+          This field is required
+        </p>
+
+        <p
+          class="form-text text-danger"
+          *ngIf="registerControls['confirmPass'].getError('MustMatch')"
+        >
+          The password must matche the previus password
+        </p>
+      </div>
+    </div>
+    <!-- ============== end form fields =============  -->
+    <hr />
+    <!-- ================ start address field ===================== -->
+    <!-- *******the add button***** -->
+    <div
+      class="d-flex align-items-center address__container container justify-content-between"
+    >
+      <h2 class="fs-4 fw-bold">Address Field (optional)</h2>
+      <!-- check if the addresses.valid is not valid and disbale the button  -->
+      <button
+        type="button"
+        (click)="addAdressHandler()"
+        class="shadow rounded-2 fs-5"
+        [disabled]="!addresses.valid"
+      >
+        Add address
+      </button>
+    </div>
+
+    <!-- ******* container of the addresses inputs ******** -->
+    <div class="form-group container" formArrayName="formAdress">
+      <div
+        class="row mb-3"
+        *ngFor="let addControl of addresses.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <div class="form-group col">
+          <label class="text-light">Address</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Agami"
+            formControlName="address"
+          />
+        </div>
+
+        <div class="form-group col">
+          <label class="text-light">Street</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Abo-Youssef"
+            formControlName="street"
+          />
+        </div>
+
+        <div class="form-group col">
+          <label class="text-light">City</label>
+          <input
+            formControlName="city"
+            type="text"
+            class="form-control"
+            placeholder="Alexandria"
+          />
+        </div>
+
+        <div class="form-group col">
+          <label class="text-light">Country</label>
+          <input
+            formControlName="country"
+            type="text"
+            class="form-control"
+            placeholder="Egypt"
+          />
+        </div>
+
+        <!-- the delete button and passing the index to delete the target button  -->
+        <button
+          (click)="deleteAdressHandler(i)"
+          type="button"
+          class="btn col-2 mt-4 me-2 btn-danger"
+        >
+          Delete
+        </button>
+      </div>
+
+      <!-- this paragraph will show at first and the fileds are empty  -->
+      <p
+        *ngIf="!addresses.valid"
+        class="text-danger fs-5 text-capitalize text-center"
+      >
+        all fields are reqiuerd (or you can delete the address fields)
+      </p>
+    </div>
+    <!-- ================ end address field ===================== -->
+    <hr />
+    <!-- the button will be disapled untill all input be valid  -->
+    <button
+      type="submit"
+      [disabled]="registerForm.invalid"
+      class="btn fs-3 fw-bold w-100 sumbit__btn btn-primary"
+    >
+      Register
+    </button>
+  </form>
+</section>

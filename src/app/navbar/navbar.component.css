@@ -1,0 +1,37 @@
+.navbar {
+  background-color: var(--dark-light);
+}
+
+img {
+  width: 80px;
+}
+
+.main__btn,
+.sec__btn {
+  border: 0;
+  padding: 10px 20px;
+  color: var(--white);
+}
+
+.main__btn {
+  background-color: var(--main-color);
+}
+
+.sec__btn {
+  border: 1px solid var(--white);
+}
+
+.logo:hover {
+  color: var(--main-color);
+}
+
+.cart {
+  padding: 8px 20px;
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+i {
+  color: var(--dark-light);
+}
+

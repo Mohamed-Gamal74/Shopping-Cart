@@ -1,0 +1,35 @@
+<div class="card mt-5 shadow">
+  <img [src]="product.image" class="card-img-top" [alt]="product.name" />
+  <div class="card-body text-center">
+    <h5 class="card-title fw-bold">{{ product.name | uppercase }}</h5>
+    <p class="card-text fs-4">
+      {{ product.price | currency: "":"EG":"":"fr" }}
+    </p>
+    <p>{{ product.createdAt | date: "MMMM , y" }}</p>
+
+    <!-- if the count is 0 the item will be out of stock  -->
+    <div *ngIf="product.count > 0; then trueBlock; else falseBlock"></div>
+    <ng-template #trueBlock>
+      <p style="color: green" class="fs-4 fw-bold">In stock</p>
+    </ng-template>
+    <ng-template #falseBlock>
+      <p style="color: red" class="fs-4 fw-bold">Out of stock</p>
+    </ng-template>
+
+    <!-- this button will show only if the item is in stock  -->
+    <button
+      (click)="handleAddToCart(product)"
+      class="fw-bold btn btn-primary mt-2 me-2"
+      [ngStyle]="
+        product.count <= 0 ? { display: 'none' } : { display: 'inline' }
+      "
+    >
+      Add To Cart
+    </button>
+
+    <!-- show details of item will rout to the details page and also you can add to cart from there -->
+    <button (click)="handleShowDetail()" class="btn detail__btn mt-2">
+      show Product Details
+    </button>
+  </div>
+</div>

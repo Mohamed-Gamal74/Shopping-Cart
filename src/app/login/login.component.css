@@ -1,0 +1,13 @@
+form {
+  min-height: 300px;
+  background-color: var(--dark-light);
+}
+
+p a {
+  text-decoration: underline;
+}
+
+button:disabled {
+  background-color: var(--white-light);
+  color: var(--dark-light);
+}

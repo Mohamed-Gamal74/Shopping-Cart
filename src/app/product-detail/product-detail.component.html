@@ -1,0 +1,39 @@
+<section
+  class="container text-light rounded-2 shadow d-flex align-items-center justify-content-evenly gap-5 p-4"
+>
+  <div class="img__container">
+    <img [src]="productDetails.image" class="me-5" alt="" />
+  </div>
+  <div class="product__info">
+    <h2>{{ productDetails.name }}</h2>
+    <p>
+      price : <span class="fw-bold" >{{ productDetails.price }}EG</span>
+    </p>
+    <p>
+      Rate : <span class="fw-bold">{{ productDetails.rate }}</span>
+    </p>
+    <p>
+      Description : <span class="fw-bold">{{ productDetails.description }}</span>
+    </p>
+    <div
+      *ngIf="productDetails.count > 0; then trueBlock; else falseBlock"
+    ></div>
+    <ng-template #trueBlock>
+      <p style="color: green" class="fs-4 fw-bold">In stock</p>
+    </ng-template>
+    <ng-template #falseBlock>
+      <p style="color: red" class="fs-4 fw-bold">Out of stock</p>
+    </ng-template>
+
+    <!-- this button if the count is 0 (out of stock) will be hidden  -->
+    <button
+      (click)="handleAddToCart(productDetails)"
+      class="fw-bold btn btn-primary w-50 mt-4"
+      [ngStyle]="
+        productDetails.count <= 0 ? { display: 'none' } : { display: 'inline' }
+      "
+    >
+      Add To Cart
+    </button>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+h1 {
+  font-size: 17rem;
+}
+
+
+span {
+  color: var(--main-color);
+}
+
+a {
+  border: 1px solid var(--white);
+  padding: 10px 20px;
+  color: var(--white);
+}

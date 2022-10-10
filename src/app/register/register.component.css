@@ -1,0 +1,33 @@
+section {
+  width: 1000px;
+  background-color: var(--dark-light);
+}
+
+button:disabled {
+  background-color: var(--white-light);
+  color: var(--dark-light);
+}
+
+.address__container h2 {
+  color: var(--main-color);
+}
+
+.address__container button {
+  border: 0;
+  padding: 10px 20px;
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+.address__container button:disabled {
+  background-color: var(--white-light);
+  color: var(--dark-light);
+}
+
+input:focus {
+  outline: 0;
+}
+
+hr {
+  color: var(--white-light);
+}

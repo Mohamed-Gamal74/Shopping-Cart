@@ -1,0 +1,22 @@
+<nav
+  class="navbar shadow  text-uppercase fw-bold flex align-items-center justify-content-between"
+>
+  <div class="container">
+    <a routerLink="" class="fs-2 logo">
+      <img src="../../assets/logo.png" alt="logo">
+    </a>
+    <div class="sign d-flex align-items-center">
+      <div (click)="handleCartRoute()" class="cart me-3 bg-light rounded-3">
+        <i class="fs-5 bi bi-cart3"></i> {{ totalItem }}
+      </div>
+      <a routerLink="regeister" class="main__btn me-2 rounded-1 fs-5 fw-bold"
+        >Register</a
+      >
+      <a
+        routerLink="login"
+        class="sec__btn rounded-1 fs-5 fw-bold bg-transparent"
+        >Login</a
+      >
+    </div>
+  </div>
+</nav>

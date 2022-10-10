@@ -1,0 +1,22 @@
+section {
+  background-color: var(--dark-light);
+  margin-top: 100px;
+  width: fit-content;
+}
+
+span {
+  color: var(--main-color);
+}
+
+.img__container {
+  width: 300px;
+}
+
+.img__container img {
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: var(--main-color);
+  border: 0;
+}

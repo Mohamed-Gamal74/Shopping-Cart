@@ -1,0 +1,49 @@
+<section class="wrapper mt-5 w-25 container d-flex flex-column justify-content-center">
+  <form #loginForm="ngForm" (ngSubmit)="handleSubmitForm(loginForm)" class="p-3 mb-2 rounded-3">
+    <div class="form-group ms-auto me-auto w-100 mb-3">
+      <label class="text-light" for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+        placeholder="Enter email" #emailName="ngModel" name="emailName" ngModel required
+        pattern="^([a-z]+)(\.[a-z0-9_\+\-]+)?@([a-z]+)\.([a-z]{2,4})(\.[a-z]{2})?$" />
+      <div *ngIf="
+          (emailName.touched && !emailName.valid) ||
+          (loginForm.submitted && !emailName.valid)
+        ">
+        <p *ngIf="emailName.errors && emailName.errors['required']" class="form-text text-danger">
+          This field is required
+        </p>
+
+        <p *ngIf="emailName.errors && emailName.errors['pattern']" class="form-text text-danger">
+          please enter a valid email
+        </p>
+      </div>
+    </div>
+    <div class="form-group mb-5 ms-auto me-auto w-100">
+      <label class="text-light" for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" #password="ngModel"
+        name="password" ngModel required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$" />
+
+      <div *ngIf="
+          (password.touched && !password.valid) ||
+          (loginForm.submitted && !password.valid)
+        ">
+        <p *ngIf="password.errors && password.errors['required']" class="form-text text-danger">
+          This field is required
+        </p>
+
+        <p *ngIf="password.errors && password.errors['pattern']" class="form-text text-danger">
+          password should have minimum 8 characters , at least one uppercase
+          letter, one lowercase letter , one number , one special character
+        </p>
+      </div>
+    </div>
+
+    <button [disabled]="!loginForm.valid" type="submit" class="btn ms-auto me-auto btn-primary w-100">
+      Login
+    </button>
+  </form>
+
+  <p class="text-center text-light">
+    Don't Have a account ? <a routerLink="/regeister">Register</a>
+  </p>
+</section>

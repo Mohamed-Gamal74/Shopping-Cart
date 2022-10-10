@@ -1,0 +1,52 @@
+h1 {
+  font-size: 4rem;
+  color: var(--main-color);
+}
+
+.emptyCart {
+  height: 400px;
+}
+
+td img {
+  max-width: 50px;
+}
+
+a {
+  color: var(--white);
+  margin-top: 30px;
+  background-color: var(--main-color);
+  padding: 15px 50px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+th,
+td {
+  font-size: 1.5rem;
+}
+
+i {
+  cursor: pointer;
+}
+
+.totalPrice {
+  background-color: var(--dark-light);
+  color: var(--white);
+  padding: 20px;
+  width: 100%;
+}
+
+.totalPrice span {
+  color: var(--main-color);
+}
+
+.shopMore__btn {
+  background-color: var(--main-color);
+  color: var(--white);
+}
+
+.decrease,
+.increase {
+  border: 0;
+  background-color: transparent;
+}
